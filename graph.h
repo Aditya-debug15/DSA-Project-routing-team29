@@ -8,7 +8,7 @@ typedef struct Node* PtrNode;
 
 struct AdjList{
     int degree;   // total number of vertex
-    PtrNode* vertex; // array of pointer to nodes
+    PtrNode vertex; // array of pointer to nodes
 };
 
 struct Node
@@ -17,6 +17,7 @@ struct Node
     double length;   // length of the road in km
     int cars;     // cars present on the road
     double time;   // time required to cross that road in minutes
+    Node* Next;
 };
 
 // functions on the Adj List
