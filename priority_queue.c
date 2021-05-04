@@ -59,7 +59,7 @@ void              MinHeapify(ptr_Minheap p)
     }
 }
 
-/*
+
 ptr_node_for_heap ExtractMin(ptr_Minheap p)
 {
     if (p->size > 0)
@@ -78,7 +78,7 @@ ptr_node_for_heap ExtractMin(ptr_Minheap p)
     }
 }
 
-
+/*
 void              DecreaseKey(ptr_Minheap p,int vertex,double new_weight)
 {
     int i= p->position[vertex-1];
