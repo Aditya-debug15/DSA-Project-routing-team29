@@ -78,7 +78,7 @@ ptr_node_for_heap ExtractMin(ptr_Minheap p)
     }
 }
 
-/*
+
 void              DecreaseKey(ptr_Minheap p,int vertex,double new_weight)
 {
     int i= p->position[vertex-1];
@@ -90,7 +90,7 @@ void              DecreaseKey(ptr_Minheap p,int vertex,double new_weight)
     }
 }
 
-*/
+
 void              print_heap(ptr_Minheap p)
 {
     for (int i = 0; i < p->size; i++)
