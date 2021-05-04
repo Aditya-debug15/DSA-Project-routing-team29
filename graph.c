@@ -74,6 +74,22 @@ void          InsertEdge(PtrAdjList G,int vertex1,int vertex2,double length,int 
     G->vertex[vertex2-1].Next=add2;
 }
 
+void          UpdateDis(PtrAdjList G,int vertex1,int vertex2,double new_length)
+{
+    PtrNode Temp_add=G->vertex[vertex1-1].Next;
+    while(Temp_add!=NULL && Temp_add->vertexid!=vertex2)
+    {
+        Temp_add=Temp_add->Next;
+    }
+    if(Temp_add==NULL)
+    {
+        printf("Edge does not exist\n");
+    }
+    else{
+        Temp_add->length=new_length;
+    }
+}
+
 void          PrintList(PtrAdjList G)
 {
     // To print the Adj List
