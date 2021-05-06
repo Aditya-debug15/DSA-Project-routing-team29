@@ -5,8 +5,23 @@
 #include "priority_queue.h"
 double CalTime(double length, int cars)
 {
-    // This is an incorrect function just made it to test my program
-    return 1;
+    double speed;
+    double time;
+
+    if(cars == 0)
+    {
+        speed = 60;
+    }
+    else if(cars > 0 && cars <= 80)
+    {
+        speed = 60 - (0.5)*cars;
+    }
+    else
+    {
+        speed = 20;
+    }
+    time = (length/speed)*60;
+    return time;
 }
 
 PtrAdjList CreateEmptyGraph(int degree)
