@@ -123,6 +123,7 @@ void Dijkstra_shortest_length(PtrAdjList G, double *distance_source, int *prev, 
     pq->Array[source - 1].weight = 0;
     for (int i = 1; i <= n; i++)
     {
+        prev[i]=-1;
         if (i!=source)
         {
             known[i] = 0;
@@ -146,11 +147,22 @@ void Dijkstra_shortest_length(PtrAdjList G, double *distance_source, int *prev, 
             if ((!known[v]) && (distance_source[heap_node->vertex] + temp->length < distance_source[v]))
             {
                 distance_source[v] = distance_source[heap_node->vertex] + temp->length; // Update dv
+                prev[v]=heap_node->vertex;
                 DecreaseKey(pq, v, distance_source[v]);
             }
             temp = temp->Next;
         }
     }
+}
+void print_shortest_path(int* prev,int source,int destination,Ptr_S Stack)
+{
+    Push(Stack,destination);
+    while(prev[destination]!=source && source!=destination)
+    {
+        destination=prev[destination];
+        Push(Stack,destination);
+    }
+    Push(Stack,source);
 }
 void Dijkstra_shortest_time(PtrAdjList G, double *time_source, int *prev, int source)
 {
@@ -166,6 +178,7 @@ void Dijkstra_shortest_time(PtrAdjList G, double *time_source, int *prev, int so
     pq->Array[source - 1].weight = 0;
     for (int i = 1; i <= n; i++)
     {
+        prev[i]=-1;
         if (i!=source)
         {
             known[i] = 0;
@@ -189,9 +202,20 @@ void Dijkstra_shortest_time(PtrAdjList G, double *time_source, int *prev, int so
             if ((!known[v]) && (time_source[heap_node->vertex] + temp->time < time_source[v]))
             {
                 time_source[v] = time_source[heap_node->vertex] + temp->time; // Update dv
+                prev[v]=heap_node->vertex;
                 DecreaseKey(pq, v, time_source[v]);
             }
             temp = temp->Next;
         }
     }
+}
+void print_shortes_time_path(int* prev,int source,int destination,Ptr_S Stack)
+{
+    Push(Stack,destination);
+    while(prev[destination]!=source && source!=destination)
+    {
+        destination=prev[destination];
+        Push(Stack,destination);
+    }
+    Push(Stack,source);
 }
