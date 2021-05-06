@@ -107,6 +107,30 @@ void UpdateDis(PtrAdjList G, int vertex1, int vertex2, double new_length)
     }
 }
 
+void          UpdateCars(PtrAdjList G,int vertex1,int vertex2,int new_cars)
+{
+    PtrNode temp = G->vertex[vertex1 - 1].Next;
+   
+    L1 :
+
+    if (temp != NULL && temp->vertexid != vertex2)
+    {
+        temp = temp->Next;
+        goto L1;
+    }
+
+    if(temp==NULL)
+    {
+          printf("Edge doesn't Exist\n");
+    }
+
+    else 
+    {
+        temp->cars = new_cars;
+        printf("Sucessfully updated the number of cars\n");
+    }
+}
+
 void PrintList(PtrAdjList G)
 {
     // To print the Adj List
