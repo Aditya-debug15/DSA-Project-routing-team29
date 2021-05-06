@@ -152,7 +152,6 @@ void Dijkstra_shortest_length(PtrAdjList G, double *distance_source, int *prev, 
         }
     }
 }
-/*
 void Dijkstra_shortest_time(PtrAdjList G, double *time_source, int *prev, int source)
 {
     int *known;
@@ -196,4 +195,3 @@ void Dijkstra_shortest_time(PtrAdjList G, double *time_source, int *prev, int so
         }
     }
 }
-*/
