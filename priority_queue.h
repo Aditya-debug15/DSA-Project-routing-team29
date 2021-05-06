@@ -1,6 +1,16 @@
 #ifndef __PQUEUE_H
 #define __PQUEUE_H
 
+// Both priority and stacks
+typedef struct node List;
+typedef struct node* my_stack;
+typedef my_stack* Ptr_S;
+struct node{
+    int x;
+    struct node* next;
+};
+void Push(Ptr_S S,int x);
+void Pop(Ptr_S S);
 
 typedef struct vertex_dis_for_heap *ptr_node_for_heap;
 typedef struct vertex_dis_for_heap vertex_dis_for_heap;
