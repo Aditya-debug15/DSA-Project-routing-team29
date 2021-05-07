@@ -76,18 +76,13 @@ void InsertEdge(PtrAdjList G, int vertex1, int vertex2, double length, int cars)
         exit(0);
     }
     // inserting at the front if it is not present
+    // Directed Graph
     add->vertexid = vertex2;
     add->length = length;
     add->cars = cars;
     add->time = CalTime(length, cars);
     add->Next = G->vertex[vertex1 - 1].Next;
     G->vertex[vertex1 - 1].Next = add;
-    add2->vertexid = vertex1;
-    add2->length = length;
-    add2->cars = cars;
-    add2->time = add->time;
-    add2->Next = G->vertex[vertex2 - 1].Next;
-    G->vertex[vertex2 - 1].Next = add2;
 }
 
 void UpdateDis(PtrAdjList G, int vertex1, int vertex2, double new_length)
