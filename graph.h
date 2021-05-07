@@ -34,4 +34,5 @@ void Dijkstra_shortest_length(PtrAdjList G,double* distance_source,int* prev,int
 void print_shortest_path(int* prev,int source,int destination,Ptr_S Stack);
 void Dijkstra_shortest_time(PtrAdjList G, double *time_source, int *prev, int source);
 void print_shortes_time_path(int* prev,int source,int destination,Ptr_S Stack);
+void          DeleteList(PtrAdjList G); 
 #endif
