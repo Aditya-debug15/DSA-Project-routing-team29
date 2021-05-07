@@ -104,6 +104,7 @@ void UpdateDis(PtrAdjList G, int vertex1, int vertex2, double new_length)
     else
     {
         Temp_add->length = new_length;
+        Temp_add->time=CalTime(Temp_add->length,Temp_add->cars);
     }
 }
 
@@ -127,6 +128,7 @@ void          UpdateCars(PtrAdjList G,int vertex1,int vertex2,int new_cars)
     else 
     {
         temp->cars = new_cars;
+        temp->time=CalTime(temp->length,temp->cars);
         printf("Sucessfully updated the number of cars\n");
     }
 }
@@ -141,7 +143,7 @@ void PrintList(PtrAdjList G)
         while (temp != NULL)
         {
             printf("vertex 1=%d and vertex 2 = %d\n", i + 1, temp->vertexid);
-            printf("Distance between them is: %f and cars present are %d\n", temp->length, temp->cars);
+            printf("Distance between them is: %0.2f and cars present are %d and time taken to cross it is %0.2f \n", temp->length, temp->cars,temp->time);
             temp = temp->Next;
         }
         printf("\n");
@@ -191,7 +193,10 @@ void Dijkstra_shortest_length(PtrAdjList G, double *distance_source, int *prev, 
             }
             temp = temp->Next;
         }
+        free(heap_node);
     }
+    free(known);
+    DeleteHeap(pq);
 }
 void print_shortest_path(int* prev,int source,int destination,Ptr_S Stack)
 {
@@ -246,7 +251,10 @@ void Dijkstra_shortest_time(PtrAdjList G, double *time_source, int *prev, int so
             }
             temp = temp->Next;
         }
+        free(heap_node);
     }
+    free(known);
+    DeleteHeap(pq);
 }
 void print_shortes_time_path(int* prev,int source,int destination,Ptr_S Stack)
 {
@@ -257,4 +265,21 @@ void print_shortes_time_path(int* prev,int source,int destination,Ptr_S Stack)
         Push(Stack,destination);
     }
     Push(Stack,source);
+}
+void          DeleteList(PtrAdjList G)
+{
+    int i;
+    PtrNode Curr,Next_node;
+    for(i=0;i<G->degree;i++)
+    {
+        Curr = G->vertex[i].Next;
+        while (Curr != NULL)
+        {
+            Next_node = Curr->Next;
+            free(Curr);
+            Curr = Next_node;
+        }
+    }
+    free(G->vertex);
+    free(G);
 }
