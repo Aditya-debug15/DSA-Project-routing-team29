@@ -77,6 +77,22 @@ int isEdge(PtrAdjList G, int u, int v)
         return 0;
 }
 
+// function to prevent duplicates/multiple datas between two nodes
+int timeDataAlreadyExists(timeHistoryTable *T, int u, int v)
+{
+    timeNode *temp = T->tpointer[u - 1]->timeNext;
+
+    while (temp != NULL && temp->vertexid != v - 1)
+    {
+        temp = temp->timeNext;
+    }
+
+    if (temp->vertexid == v - 1)
+        return 1;
+    else
+        return 0;
+}
+
 //from u to v
 void addTimeNode(PtrAdjList G, timeHistoryTable *T, int u, double t1, double t2, double t3, double t4, double t5, int v)
 {
@@ -85,8 +101,16 @@ void addTimeNode(PtrAdjList G, timeHistoryTable *T, int u, double t1, double t2,
     {
         timeNode *tn = makeTimeNode(t1, t2, t3, t4, t5, v);
 
-        tn->timeNext = T->tpointer[u - 1]->timeNext;
-        T->tpointer[u - 1]->timeNext = tn;
+        if (timeDataAlreadyExists(T, u, v) == 1)
+        {
+            printf("\nError: A time history data already exists from u to v\n");
+            return;
+        }
+        else
+        {
+            tn->timeNext = T->tpointer[u - 1]->timeNext;
+            T->tpointer[u - 1]->timeNext = tn;
+        }
     }
     else
     {
