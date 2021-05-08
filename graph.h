@@ -1,7 +1,7 @@
 #ifndef __GRAPH_H
 #define __GRAPH_H
 #include "priority_queue.h"
-#define INF 1e5
+#define INF 123456
 
 typedef struct AdjList AdjList;
 typedef struct AdjList* PtrAdjList;
