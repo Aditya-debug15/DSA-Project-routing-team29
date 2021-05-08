@@ -28,6 +28,7 @@ timeHistoryTable *createEmptyTimeHistoryTable(int N)
 
         T->tpointer[i]->vertexid = i + 1;
         T->tpointer[i]->timeNext = NULL;
+        T->tpointer[i]->avgtime = DONTCARE;
 
         for (int j = 0; j < 5; j++)
             T->tpointer[i]->time[j] = DONTCARE;
@@ -47,6 +48,14 @@ timeNode *makeTimeNode(double t1, double t2, double t3, double t4, double t5, in
     tn->time[2] = t3;
     tn->time[3] = t4;
     tn->time[4] = t5;
+
+    tn->avgtime = 0;
+    for (int i = 0; i < 5; i++)
+    {
+        tn->avgtime = tn->avgtime + tn->time[i];
+    }
+    tn->avgtime = tn->avgtime / 5;
+
     tn->timeNext = NULL;
 
     return tn;
@@ -72,7 +81,7 @@ int isEdge(PtrAdjList G, int u, int v)
 void addTimeNode(PtrAdjList G, timeHistoryTable *T, int u, double t1, double t2, double t3, double t4, double t5, int v)
 {
 
-    if (isEdge(G, u, v) == 1)
+    if (is4Edge(G, u, v) == 1)
     {
         timeNode *tn = makeTimeNode(t1, t2, t3, t4, t5, v);
 
@@ -87,24 +96,23 @@ void addTimeNode(PtrAdjList G, timeHistoryTable *T, int u, double t1, double t2,
 }
 
 // function to print the time history table
-void printTimeHistoryTable(timeHistoryTable* T)
+void printTimeHistoryTable(timeHistoryTable *T)
 {
     if (T == NULL)
     {
         printf("\nError: time history table does not exist\n");
         return;
     }
-    for (int i = 0;i<T->no_of_vertices;i++)
+    for (int i = 0; i < T->no_of_vertices; i++)
     {
-        timeNode* temp = T->tpointer[i]->timeNext;
-        printf("%d", i+1);
-        while(temp != NULL)
+        timeNode *temp = T->tpointer[i]->timeNext;
+        printf("%d", i + 1);
+        while (temp != NULL)
         {
-            printf("=> %d ; %.2f,%.2f,%.2f,%.2f,%.2f",temp->vertexid,temp->time[0],temp->time[1],temp->time[2],temp->time[3],temp->time[4]);
+            printf("==> %d ; %.2f,%.2f,%.2f,%.2f,%.2f,%.2f", temp->vertexid, temp->time[0], temp->time[1], temp->time[2], temp->time[3], temp->time[4], temp->avgtime);
             temp = temp->timeNext;
         }
-        printf("=> NULL\n");
+        printf("==> NULL\n");
     }
     return;
 }
-

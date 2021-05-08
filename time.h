@@ -30,6 +30,7 @@ struct timeNode
 {
     int vertexid;
     double time[5];
+    double avgtime;
     timeNode *timeNext;
 };
 
