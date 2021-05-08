@@ -281,6 +281,57 @@ void print_shortes_time_path(int* prev,int source,int destination,Ptr_S Stack)
     }
     Push(Stack,source);
 }
+void shortest_distance_choice4(PtrAdjList graph,int source,int destination)
+{
+    int n=graph->degree;
+    double* distance_source;
+    int* prev;
+    distance_source=(double*)malloc((n+1)*sizeof(double));
+    prev=(int*)malloc((n+1)*sizeof(int));
+    Dijkstra_shortest_length(graph,distance_source,prev,source);
+    if(distance_source[destination]<INF)
+    {    
+        printf("The shortest distance between %d and %d is %0.2f\n",source,destination,distance_source[destination]);
+        my_stack S=NULL;
+        print_shortest_path(prev,source,destination,&S);
+        printf("The path is \n");
+        DisplayStack(S);
+        printf("\n");
+        DeleteStack(&S);
+    }
+    else{
+        printf("path doesn't exist\n");
+        printf("\n");
+    }
+    free(distance_source);
+    free(prev);
+}
+void shortest_time_choice5(PtrAdjList graph,int source, int destination)
+{
+    int n=graph->degree;
+    double* time_source;
+    int* prev;
+    time_source=(double*)malloc((n+1)*sizeof(double));
+    prev=(int*)malloc((n+1)*sizeof(int));
+    Dijkstra_shortest_time(graph,time_source,prev,source);
+    if(time_source[destination]<INF)
+    {    
+        printf("The shortest distance between %d and %d is %0.2f\n",source,destination,time_source[destination]);
+        my_stack S=NULL;
+        print_shortest_path(prev,source,destination,&S);
+        printf("The path is \n");
+        DisplayStack(S);
+        printf("\n");
+        DeleteStack(&S);
+    }
+    else{
+        printf("path doesn't exist\n");
+        printf("\n");
+    }
+    free(time_source);
+    free(prev);
+}
+// safe path begins here
 int UpdateTime(PtrAdjList G,int vertex1,int vertex2,double new_time)
 {
     PtrNode Temp_add = G->vertex[vertex1 - 1].Next;
