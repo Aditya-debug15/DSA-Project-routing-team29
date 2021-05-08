@@ -26,6 +26,7 @@ struct Node
 
 PtrAdjList    CreateEmptyGraph(int degree);
 void          InsertEdge(PtrAdjList G,int vertex1,int vertex2,double length,int cars);
+double        CalTime(double length, int cars);
 void          UpdateDis(PtrAdjList G,int vertex1,int vertex2,double new_length);
 void          UpdateCars(PtrAdjList G,int vertex1,int vertex2,int new_cars);
 void          DeleteEdge(PtrAdjList G,int vertex1,int vertex2);
