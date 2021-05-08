@@ -97,7 +97,7 @@ int timeDataAlreadyExists(timeHistoryTable *T, int u, int v)
 void addTimeNode(PtrAdjList G, timeHistoryTable *T, int u, double t1, double t2, double t3, double t4, double t5, int v)
 {
 
-    if (is4Edge(G, u, v) == 1)
+    if (isEdge(G, u, v) == 1)
     {
         timeNode *tn = makeTimeNode(t1, t2, t3, t4, t5, v);
 
