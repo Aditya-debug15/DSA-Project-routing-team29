@@ -85,3 +85,26 @@ void addTimeNode(PtrAdjList G, timeHistoryTable *T, int u, double t1, double t2,
     }
     return;
 }
+
+// function to print the time history table
+void printTimeHistoryTable(timeHistoryTable* T)
+{
+    if (T == NULL)
+    {
+        printf("\nError: time history table does not exist\n");
+        return;
+    }
+    for (int i = 0;i<T->no_of_vertices;i++)
+    {
+        timeNode* temp = T->tpointer[i]->timeNext;
+        printf("%d", i+1);
+        while(temp != NULL)
+        {
+            printf("=> %d ; %.2f,%.2f,%.2f,%.2f,%.2f",temp->vertexid,temp->time[0],temp->time[1],temp->time[2],temp->time[3],temp->time[4]);
+            temp = temp->timeNext;
+        }
+        printf("=> NULL\n");
+    }
+    return;
+}
+
