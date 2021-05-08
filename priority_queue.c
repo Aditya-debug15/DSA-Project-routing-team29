@@ -98,6 +98,15 @@ void              print_heap(ptr_Minheap p)
         printf("vertex = %d   and   edge weight = %0.2f\n", p->Array[i].vertex, p->Array[i].weight);
     }
 }
+
+void DeleteHeap(ptr_Minheap pq)
+{
+    free(pq->Array);
+    free(pq->position);
+    free(pq);
+    return;
+}
+
 void Push(Ptr_S S,int x)
 {
     my_stack T = (my_stack)malloc(sizeof(List));
@@ -108,12 +117,31 @@ void Push(Ptr_S S,int x)
 
 void Pop(Ptr_S S)
 {
+    my_stack prev;
     if (*S != NULL)
     {
+        prev=(*S);
         *S=(*S)->next;
+        free(prev);
     }
     else
     {
         printf("The stack is empty\n");
+    }
+}
+void DisplayStack(my_stack S)
+{
+    while (S != NULL)
+    {
+        printf("%d ", S->x);
+        S = S->next;
+    }
+    printf("\n");
+}
+void DeleteStack(Ptr_S S)
+{
+    while((*S)!=NULL)
+    {
+        Pop(S);
     }
 }

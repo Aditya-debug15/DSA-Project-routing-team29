@@ -11,6 +11,8 @@ struct node{
 };
 void Push(Ptr_S S,int x);
 void Pop(Ptr_S S);
+void DeleteStack(Ptr_S S);
+void DisplayStack(my_stack S);
 
 typedef struct vertex_dis_for_heap *ptr_node_for_heap;
 typedef struct vertex_dis_for_heap vertex_dis_for_heap;
@@ -68,5 +70,5 @@ void              DecreaseKey(ptr_Minheap p,int vertex,double new_weight);
 // To decrese the value in the heap and correct the heap
 void              print_heap(ptr_Minheap p);
 // Utility function to print the heap
-
+void              DeleteHeap(ptr_Minheap pq);
 #endif
