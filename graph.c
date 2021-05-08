@@ -129,6 +129,25 @@ void          UpdateCars(PtrAdjList G,int vertex1,int vertex2,int new_cars)
     }
 }
 
+void DeleteEdge(PtrAdjList G, int vertex1, int vertex2)
+{
+    // function to delete an edge
+
+    PtrNode temp = G->vertex[vertex1 - 1].Next;
+    PtrNode prev=(&G->vertex[vertex1-1]);
+    while ((temp != NULL) && (temp->vertexid!=vertex2))
+    {
+        prev=temp;
+        temp=temp->Next;
+    }
+    if(temp==NULL)
+        printf("Edge does not exist\n");
+    else{
+        prev->Next=temp->Next;
+        free(temp);
+    }
+}
+
 void PrintList(PtrAdjList G)
 {
     // To print the Adj List
