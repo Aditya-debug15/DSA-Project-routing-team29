@@ -66,15 +66,15 @@ int isEdge(PtrAdjList G, int u, int v)
 {
     PtrNode temp = G->vertex[u - 1].Next;
 
-    while (temp->Next != NULL && temp->vertexid != v)
+    while (temp != NULL && temp->vertexid != v)
     {
         temp = temp->Next;
     }
 
-    if (temp->vertexid == v)
-        return 1;
-    else
+    if (temp == NULL)
         return 0;
+    else
+        return 1;
 }
 
 // function to prevent duplicates/multiple datas between two nodes
@@ -87,10 +87,10 @@ int timeDataAlreadyExists(timeHistoryTable *T, int u, int v)
         temp = temp->timeNext;
     }
 
-    if (temp->vertexid == v)
-        return 1;
-    else
+    if (temp == NULL)
         return 0;
+    else
+        return 1;
 }
 
 //from u to v
