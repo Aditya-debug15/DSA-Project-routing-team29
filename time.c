@@ -66,12 +66,12 @@ int isEdge(PtrAdjList G, int u, int v)
 {
     PtrNode temp = G->vertex[u - 1].Next;
 
-    while (temp->Next != NULL && temp->vertexid != v - 1)
+    while (temp->Next != NULL && temp->vertexid != v)
     {
         temp = temp->Next;
     }
 
-    if (temp->vertexid == v - 1)
+    if (temp->vertexid == v)
         return 1;
     else
         return 0;
@@ -82,12 +82,12 @@ int timeDataAlreadyExists(timeHistoryTable *T, int u, int v)
 {
     timeNode *temp = T->tpointer[u - 1]->timeNext;
 
-    while (temp != NULL && temp->vertexid != v - 1)
+    while (temp != NULL && temp->vertexid != v)
     {
         temp = temp->timeNext;
     }
 
-    if (temp->vertexid == v - 1)
+    if (temp->vertexid == v)
         return 1;
     else
         return 0;
