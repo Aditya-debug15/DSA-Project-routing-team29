@@ -2,42 +2,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include "time.h"
 
 // this function stores the previous
 // five time values from previous 5 inputs
 
-// the input taken should be like
-// feed us yhe previous 5 days data
-// for each edge
-
-// the user will give five situations for
-// each edge. If he wants to give same
-// data as privious day then he should have
-// the option as well
-
-#define DONTCARE 0
-
-typedef struct timeNode timeNode;
-typedef struct timeHistoryTable timeHistoryTable;
-
-struct timeHistoryTable
-{
-    int no_of_vertices;
-    timeNode **tpointer;
-};
-
-// int no_of_vertices is added to avoid using G
-// as a input (G->vertex)
-
-struct timeNode
-{
-    int vertexid;
-    double time[5];
-    timeNode *timeNext;
-};
-
 timeHistoryTable *createEmptyTimeHistoryTable(int N)
 {
+    if (N <= 0)
+    {
+        return NULL;
+    }
+
     timeHistoryTable *T = (timeHistoryTable *)malloc(sizeof(timeHistoryTable));
     assert(T != NULL);
 
@@ -60,9 +36,9 @@ timeHistoryTable *createEmptyTimeHistoryTable(int N)
     return T;
 }
 
-timeNode* makeTimeNode(double t1, double t2, double t3, double t4, double t5, int v)
+timeNode *makeTimeNode(double t1, double t2, double t3, double t4, double t5, int v)
 {
-    timeNode* tn = (timeNode*)malloc(sizeof(timeNode));
+    timeNode *tn = (timeNode *)malloc(sizeof(timeNode));
     assert(tn != NULL);
 
     tn->vertexid = v;
@@ -76,19 +52,36 @@ timeNode* makeTimeNode(double t1, double t2, double t3, double t4, double t5, in
     return tn;
 }
 
-//from u to v
-void addTimeNode(timeHistoryTable* T, int u, double t1, double t2, double t3, double t4, double t5, int v)
+//a function to check if there is an edge from u to v
+int isEdge(PtrAdjList G, int u, int v)
 {
-    timeNode* tn = makeTimeNode(t1,t2,t3,t4,t5,v);
+    PtrNode temp = G->vertex[u - 1].Next;
 
-    tn->timeNext = T->tpointer[u-1]->timeNext;
-    T->tpointer[u-1]->timeNext = tn;
+    while (temp->Next != NULL && temp->vertexid != v - 1)
+    {
+        temp = temp->Next;
+    }
 
-    return;
+    if (temp->vertexid == v - 1)
+        return 1;
+    else
+        return 0;
 }
 
-// in main.c file it would look something like
-// enter data for this edge for previous days:
-// 5 times scanf in a while loop(loop traverses through edges)
-// take time from each entry and then use this functions 
-// to store the data
+//from u to v
+void addTimeNode(PtrAdjList G, timeHistoryTable *T, int u, double t1, double t2, double t3, double t4, double t5, int v)
+{
+
+    if (isEdge(G, u, v) == 1)
+    {
+        timeNode *tn = makeTimeNode(t1, t2, t3, t4, t5, v);
+
+        tn->timeNext = T->tpointer[u - 1]->timeNext;
+        T->tpointer[u - 1]->timeNext = tn;
+    }
+    else
+    {
+        printf("\nError: There is no edge from u to v\n");
+    }
+    return;
+}
