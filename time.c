@@ -27,11 +27,11 @@ timeHistoryTable *createEmptyTimeHistoryTable(int N)
         assert(T->tpointer[i] != NULL);
 
         T->tpointer[i]->vertexid = i + 1;
-        T->tpointer[i]->timeNext = NULL;
         T->tpointer[i]->avgtime = DONTCARE;
 
         for (int j = 0; j < 5; j++)
             T->tpointer[i]->time[j] = DONTCARE;
+        T->tpointer[i]->timeNext = NULL;
     }
 
     return T;
@@ -147,7 +147,7 @@ void deleteMemoryOfTable(timeHistoryTable *T)
     
     for(int i=0; i < T->no_of_vertices; i++)
     {
-        temp_curr = T->tpointer[i]->timeNext;
+        temp_curr = T->tpointer[i];
         
         while (temp_curr != NULL)
         {

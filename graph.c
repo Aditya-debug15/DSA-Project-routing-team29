@@ -70,7 +70,6 @@ void InsertEdge(PtrAdjList G, int vertex1, int vertex2, double length, int cars)
         temp = temp->Next;
     }
     PtrNode add = (PtrNode)malloc(sizeof(Node));
-    PtrNode add2 = (PtrNode)malloc(sizeof(Node));
     if (add == NULL)
     {
         printf("Memory full\n");
