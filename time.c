@@ -140,3 +140,22 @@ void printTimeHistoryTable(timeHistoryTable *T)
     }
     return;
 }
+
+void deleteMemoryOfTable(timeHistoryTable *T)
+{
+    timeNode* temp_curr,*temp_next;
+    
+    for(int i=0; i < T->no_of_vertices; i++)
+    {
+        temp_curr = T->tpointer[i]->timeNext;
+        
+        while (temp_curr != NULL)
+        {
+            temp_next = temp_curr->timeNext;
+            free(temp_curr);
+            temp_curr = temp_next;
+        }
+    }
+    free(T->tpointer);
+    free(T);
+}

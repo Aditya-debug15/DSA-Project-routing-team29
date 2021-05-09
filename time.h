@@ -40,6 +40,8 @@ int isEdge(PtrAdjList G, int u, int v);
 int timeDataAlreadyExists(timeHistoryTable* T,int u,int v);
 void addTimeNode(PtrAdjList G, timeHistoryTable* T, int u, double t1, double t2, double t3, double t4, double t5, int v); // u to v
 void printTimeHistoryTable(timeHistoryTable* T);
+void deleteMemoryOfTable(timeHistoryTable *T);
+
 
 // in main.c file it would look something like
 // enter data for this edge for previous days:
