@@ -100,6 +100,7 @@ void UpdateDis(PtrAdjList G, int vertex1, int vertex2, double new_length)
     {
         Temp_add->length = new_length;
         Temp_add->time=CalTime(Temp_add->length,Temp_add->cars);
+        printf("Successfully updated the length\n");
     }
 }
 
@@ -117,7 +118,7 @@ void          UpdateCars(PtrAdjList G,int vertex1,int vertex2,int new_cars)
 
     if(temp==NULL)
     {
-          printf("Edge doesn't Exist\n");
+        printf("Edge doesn't Exist\n");
     }
 
     else 
@@ -144,6 +145,7 @@ void DeleteEdge(PtrAdjList G, int vertex1, int vertex2)
     else{
         prev->Next=temp->Next;
         free(temp);
+        printf("Successfully deleted the edge\n");
     }
 }
 
@@ -315,7 +317,7 @@ void shortest_time_choice5(PtrAdjList graph,int source, int destination)
     Dijkstra_shortest_time(graph,time_source,prev,source);
     if(time_source[destination]<INF)
     {    
-        printf("The shortest distance between %d and %d is %0.2f\n",source,destination,time_source[destination]);
+        printf("The least time between %d and %d is %0.2f\n",source,destination,time_source[destination]);
         my_stack S=NULL;
         print_shortest_path(prev,source,destination,&S);
         printf("The path is \n");
@@ -476,7 +478,7 @@ void pass_data_AdjList(timeHistoryTable* T,my_stack Stack,double A[])
 }
 void SafeAlgorithmStart(timeHistoryTable* T,PtrAdjList G,int source,int destination)
 {
-    if(T->no_of_vertices!=G->degree)
+    if(T->no_of_vertices!=G->degree || source==destination)
     {
         printf("There is some data inconsistency \n");
         return;

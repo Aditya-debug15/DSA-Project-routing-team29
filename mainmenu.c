@@ -48,7 +48,7 @@ MENU:
 
     POINT1:
         scanf("%d", &n);
-       
+
         if (n == 1)
         {
             int vertex1, vertex2, cars;
@@ -63,7 +63,7 @@ MENU:
             scanf("%d", &cars);
             InsertEdge(G, vertex1, vertex2, length, cars);
 
-            printf("\nSuccessfully added an edge. \n");
+            printf("\nReady for next task\n");
             printf("Do you want to add another edge?\n");
             printf("If YES, Press 1 \nIf No, Press 0\n");
 
@@ -104,7 +104,7 @@ MENU:
 
     POINT2:
         scanf("%d", &n);
-       
+
         if (n == 1)
         {
             int vertex1, vertex2;
@@ -114,7 +114,7 @@ MENU:
             scanf("%d%d", &vertex1, &vertex2);
             DeleteEdge(G, vertex1, vertex2);
 
-            printf("\nSuccessfully deleted the desired edge.\n");
+            printf("\nReady for next task\n");
             printf("Do you want to delete another edge?\n");
             printf("If YES, Press 1 \nIf No, Press 0\n");
 
@@ -155,7 +155,7 @@ MENU:
     POINT3:
 
         scanf("%d", &n);
-       
+
         if (n == 1)
         {
             int vertex1, vertex2;
@@ -168,7 +168,7 @@ MENU:
             scanf("%lf", &new_length);
             UpdateDis(G, vertex1, vertex2, new_length);
 
-            printf("\nSuccessfully updated the distance. \n");
+            printf("\nReady for next task\n");
             printf("Do you want to update another distance?\n");
             printf("If YES, Press 1 \nIf No, Press 0\n");
 
@@ -208,7 +208,7 @@ MENU:
 
     POINT4:
         scanf("%d", &n);
-       
+
         if (n == 1)
         {
             int vertex1, vertex2;
@@ -221,7 +221,7 @@ MENU:
             scanf("%d", &new_cars);
             UpdateCars(G, vertex1, vertex2, new_cars);
 
-            printf("\nSuccessfully updated the number of cars. \n");
+            printf("\nReady for next task\n");
             printf("Do you want to update another number of cars?\n");
             printf("If YES, Press 1 \nIf No, Press 0\n");
 
@@ -261,7 +261,7 @@ MENU:
 
     POINT5:
         scanf("%d", &n);
-       
+
         if (n == 1)
         {
             int source, destination;
@@ -273,7 +273,7 @@ MENU:
             scanf("%d", &destination);
             shortest_distance_choice4(G, source, destination);
 
-            printf("\nSuccessfully found the shortest distance. \n");
+            printf("\nReady for next task\n");
             printf("Do you want to find shortest distance between another source and destination?\n");
             printf("If YES, Press 1 \nIf No, Press 0\n");
 
@@ -314,7 +314,7 @@ MENU:
 
     POINT6:
         scanf("%d", &n);
-       
+
         if (n == 1)
         {
             int source, destination;
@@ -326,7 +326,7 @@ MENU:
             scanf("%d", &destination);
             shortest_time_choice5(G, source, destination);
 
-            printf("\nSuccessfully found the least time!\n");
+            printf("\nReady for next task\n");
             printf("Do you want to find least time between another source and destination?\n");
             printf("If YES, Press 1 \nIf No, Press 0\n");
 
@@ -363,32 +363,62 @@ MENU:
     {
 
         printf("You have selected to find a safe distance.\n");
+        printf("To calculate safe distance we need data of the previous five dats\n");
         printf("To continue, Press 1\nTo go back to the main menu, Press 0\n");
 
     POINT7:
         scanf("%d", &n);
-        
+
         if (n == 1)
         {
-            int source, destination;
+            int m;
+            printf("Welcome to safe path Menu\n");
+            printf("To add data for previous five days, Press 1\n");
+            printf("To calculate safe path, Press 2\n");
+            printf("To go back to the Main Menu, Press 0\n");
+            printf("Enter your choice: ");
+            scanf("%d", &m);
+            if (m == 1)
+            {
+                int vertex1,vertex2;
+                double t1, t2, t3, t4, t5;
+            POINT70:
+                printf("Please enter the vertices between which you want to add data:\n");
+                scanf("%d%d", &vertex1, &vertex2);
+                printf("Enter the time taken for the last five days\n");
+                scanf("%lf %lf %lf %lf %lf", &t1, &t2, &t3, &t4, &t5);
+                addTimeNode(G, T, vertex1, t1, t2, t3, t4, t5, vertex2);
+                printf("Ready for next task\n");
+                printf("To add data for previous five days, Press 1\n");
+                printf("To calculate safe path, Press 2\n");
+                printf("To go back to the Main Menu, Press 0\n");
+            }
 
-        POINT71:
-            printf("Please enter the source of path: \n");
-            scanf("%d", &source);
-            printf("Please enter the destination of the path:\n");
-            scanf("%d", &destination);
-            SafeAlgorithmStart(T, G, source, destination);
-            printf("Successfully found the safest path. \n");
-            printf("Do you want to find safest path between another source and destination?\n");
-            printf("If YES, Press 1 \nIf No, Press 0\n");
-
+            if (m == 2)
+            {
+                int source, destination;
+            POINT71:
+                printf("Please enter the source of path: \n");
+                scanf("%d", &source);
+                printf("Please enter the destination of the path:\n");
+                scanf("%d", &destination);
+                SafeAlgorithmStart(T, G, source, destination);
+                printf("Ready for next task\n");
+                printf("To add data for previous five days, Press 1\n");
+                printf("To calculate safe path, Press 2\n");
+                printf("To go back to the Main Menu, Press 0\n");
+            }
         POINT72:
             scanf("%d", &repeat);
             if (repeat == 1)
             {
+                goto POINT70;
+            }
+            if (repeat == 2)
+            {
                 goto POINT71;
             }
-            if (repeat == 0)
+            if(repeat==0)
             {
                 goto MENU;
             }
