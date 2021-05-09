@@ -537,6 +537,8 @@ void SafeAlgorithmStart(timeHistoryTable* T,PtrAdjList G,int source,int destinat
                 printf("\n");
                 DeleteStack(&Stack);
             }
+            free(avg_time_source);
+            free(prev_avg);
         }
         else{
             my_stack S=NULL;
@@ -552,6 +554,8 @@ void SafeAlgorithmStart(timeHistoryTable* T,PtrAdjList G,int source,int destinat
             printf("\n");
             DeleteStack(&S);
         }
+        free(time_source);
+        free(prev);
     }
     RevertToNormalcy(G);
 }
