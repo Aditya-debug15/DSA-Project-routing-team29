@@ -159,3 +159,8 @@ void deleteMemoryOfTable(timeHistoryTable *T)
     free(T->tpointer);
     free(T);
 }
+
+void SafeAlgorithmStart(timeHistoryTable* T,PtrAdjList G,int source,int destination)
+{
+    
+}
